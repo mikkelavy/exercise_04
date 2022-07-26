@@ -16,12 +16,13 @@ CREATE TABLE IF NOT EXISTS Product (
   price_sale DECIMAL NOT NULL,
   price_promocode DECIMAL NOT NULL,
   description VARCHAR(45) NOT NULL,
-  is_active boolean NOT NULL);
+  is_active BOOLEAN NOT NULL);
 
 CREATE TABLE IF NOT EXISTS Product_Category (
   product_category_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   product_id INT NOT NULL,
   category_id INT NOT NULL,
+  is_main BOOLEAN NOT NULL,
   FOREIGN KEY (category_id) REFERENCES Category(category_id),
   FOREIGN KEY (product_id) REFERENCES Product(product_id));
 
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Product_Image (
   product_image_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   product_id INT NOT NULL,
   image_id INT NOT NULL,
-  is_main boolean NOT NULL,
+  is_main BOOLEAN NOT NULL,
   FOREIGN KEY (product_id) REFERENCES Product(product_id),
   FOREIGN KEY (image_id) REFERENCES Image(image_id));
 
@@ -88,21 +89,22 @@ Insert into Product (
   );
 
 Insert into Product_Category (
-  (product_id, category_id)  
-  values (1, 1),
-  (2, 2),
-  (3, 3),
-  (4, 4),
-  (5, 5),
-  (6, 6),
-  (7, 9),
-  (8, 8),
-  (9, 7),
-  (10, 11),
-  (11, 10),
-  (12, 12),
-  (13, 10),
-  (14, 1)
+  (product_id, category_id, is_main)  
+  values (1, 1, true),
+  (2, 2, true),
+  (3, 3, true),
+  (4, 4, true),
+  (5, 5, true),
+  (6, 6, true),
+  (7, 9, true),
+  (8, 8, true),
+  (9, 7, true),
+  (10, 11, true),
+  (11, 10, true),
+  (12, 12, true),
+  (13, 10, true),
+  (14, 1, true),
+  (8, 7, false)
 );
 
 Insert into Product_Image (
